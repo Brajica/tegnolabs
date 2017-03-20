@@ -11,7 +11,8 @@
   <body>
     <!-- Modal login -->
 
-  <form method="POST" class="form-horizontal">
+  <div class="form-horizontal">
+
     <div class="modal fade" id="modal_Login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -19,28 +20,36 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-toggle="tooltip" data-placement="top" title="Cerrar"><span aria-hidden="true">&times;</span></button>
             <h3 class="modal-title" style="text-align: center;">Iniciar sesión</h3>
           </div>
-          <div class="modal-body">
+          <div class="modal-body col-md-12 col-md-offset-1">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <div class="form-group">
-              <label class="control-label col-xs-3">Nombres:</label>
               <div class="col-xs-9">
-                <input type="text" name="txtPassword" class="form-control" placeholder="Usuario" required>
+                <%= f.email_field :email, autofocus: true,class:"form-control",placeholder:"Correo" %>
               </div>
-            </div>
+              </div>
             <div class="form-group">
-              <label class="control-label col-xs-3">Contraseña:</label>
               <div class="col-xs-9">
-                <input type="text" name="txtPassword" class="form-control" placeholder="Contraseña" required>
+                <%= f.password_field :password, autocomplete: "off",class:"form-control",placeholder:"Contraseña" %>
               </div>
-            </div>
+              </div>
+              <% if devise_mapping.rememberable? -%>
+            <div class="">
+                  <%= f.check_box :remember_me %>
+                  <%= f.label :remember_me,"Mantener Sesion Iniciada" %>
+                </div>
+              <% end -%>
+            <div class="actions">
+                <%= f.submit "Iniciar Sesion",class:"btn btn-success",style:"width: 40%;" %>
+              </div>
+            <% end %>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-success" style="width: 40%;">Entrar</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
           </div>
         </div>
       </div>
     </div>
-  </form>
+  </div>
 
   <!-- Barra de navegacion -->
 <nav class="navbar navbar-default">
@@ -58,13 +67,20 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li>
+          <% if user_signed_in? %>
           <div class="btn-group" role="group">
+            <%= button_to "Cerrar Sesion", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+          </div>
+    <% else %>
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal_Login" data-backdrop="static" data-keyboard="false" style="color:white; width: 100px; margin-top: 5px;">Entrar</button>
+    </div>
+    <div class="btn-group" role="group">
+      <%= link_to "Registrarse", new_user_registration_path, class: "btn btn-info",style: "color:white; width: 100px; margin-top: 5px;" %>
 
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal_Login" data-backdrop="static" data-keyboard="false" style="color:white; width: 100px; margin-top: 5px;">Entrar</button>
-          </div>
-          <div class="btn-group" role="group">
-            <a href="registry.php" class="btn btn-primary" style="color:white; width: 100px; margin-top: 5px;">Registrarse</a>
-          </div>
+    </div>
+<% end %>
+
         </li>
       </ul>
     </div>
