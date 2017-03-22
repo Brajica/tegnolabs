@@ -31,8 +31,7 @@
 </p>
 
 <p>
-  <strong>Imagen:</strong>
-  <%= @app.imagen %>
+  <%= image_tag @app.imagen.url(:mini),class: "img-circle"%>
 </p>
 
 <%= link_to 'Edit', edit_app_path(@app) %> |

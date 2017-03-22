@@ -1,10 +1,17 @@
 class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_admin!, only:[:new,:create,:edit,:update,:destroy]
   # GET /apps
   # GET /apps.json
   def index
-    @apps = App.all
+    if request.get?
+     @v=params[:post]
+     if @v==0
+         @apps=App.paginate(page: params[:page],per_page:30).profesores.ultimos
+       else
+         @apps=App.paginate(page: params[:page],per_page:30).estudiantes.ultimos
+     end
+    end
   end
 
   # GET /apps/1
@@ -69,6 +76,6 @@ class AppsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def app_params
-      params.require(:app).permit(:titulo, :cuerpo, :plataforma, :idioma, :sitio_web, :calificacion, :imagen)
+      params.require(:app).permit(:titulo, :cuerpo, :plataforma, :idioma, :sitio_web, :calificacion, :imagen,:rol)
     end
 end

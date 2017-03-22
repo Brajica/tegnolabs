@@ -18,34 +18,30 @@
 
   <div class="field">
     <%= f.label :cuerpo %>
-    <%= f.text_field :cuerpo %>
+    <%= f.text_area :cuerpo %>
   </div>
 
   <div class="field">
     <%= f.label :plataforma %>
-    <%= f.text_field :plataforma %>
+    <%= f.select :plataforma,[["Selecciona la plataforma",""],["web","web"],["escritorio","escritorio"],["movil","movil"]] %>
   </div>
 
   <div class="field">
     <%= f.label :idioma %>
-    <%= f.text_field :idioma %>
+    <%= f.select :idioma,[["Selecciona EL idioma",""],["Ingles","Ingles"],["Español","Español"]] %>
   </div>
-
+  <div class="field">
+    <%= f.label :rol %>
+    <%= f.select :rol, [["Rol que cumple",""],["estudiante","estudiante"],["profesor","profesor"]] %>
+  </div>
   <div class="field">
     <%= f.label :sitio_web %>
     <%= f.text_field :sitio_web %>
   </div>
 
   <div class="field">
-    <%= f.label :calificacion %>
-    <%= f.text_field :calificacion %>
+    <%= f.file_field :imagen %>
   </div>
-
-  <div class="field">
-    <%= f.label :imagen %>
-    <%= f.text_field :imagen %>
-  </div>
-
   <div class="actions">
     <%= f.submit %>
   </div>
