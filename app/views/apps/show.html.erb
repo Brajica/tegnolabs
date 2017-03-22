@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Titulo:</strong>
+  <%= @app.titulo %>
+</p>
+
+<p>
+  <strong>Cuerpo:</strong>
+  <%= @app.cuerpo %>
+</p>
+
+<p>
+  <strong>Plataforma:</strong>
+  <%= @app.plataforma %>
+</p>
+
+<p>
+  <strong>Idioma:</strong>
+  <%= @app.idioma %>
+</p>
+
+<p>
+  <strong>Sitio web:</strong>
+  <%= @app.sitio_web %>
+</p>
+
+<p>
+  <strong>Calificacion:</strong>
+  <%= @app.calificacion %>
+</p>
+
+<p>
+  <strong>Imagen:</strong>
+  <%= @app.imagen %>
+</p>
+
+<%= link_to 'Edit', edit_app_path(@app) %> |
+<%= link_to 'Back', apps_path %>

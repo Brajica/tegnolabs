@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :apps
   devise_for :users, controllers: {registrations: 'registro'}
 
   root :to => "inicio#index"
