@@ -40,23 +40,24 @@
 		<h1 class="text-muted" style="font-weight: bold;">Bienvenidos a TecnoLabs</h1>
 
 		<!-- Container de Opciones de roles -->
-		<div class="container" style="margin-top: 30px; margin-bottom: 30px;">
+		<center><div class="container" style="margin-top: 30px; margin-bottom: 30px;">
 			<div class="col-md-6 hvr-grow">
 				<%= form_tag({:controller => "apps", :action => "index"}, :method => "get") do %>
 				 <%= hidden_field_tag :post, 0%>
-				<center><div style="text-decoration:none; font-size:20px; font-weight: bold;">
-
-          <%= image_tag("teacher.png",class:"img img-rounded", height:"200") %>
-          <br>PROFESOR<h1 style="font-weight: bold; color: gray;">1</h1></div><br></center>
+				 <input type="submit" value="" id="sub" class="roles">
+				<label for="sub"><center class="rol-center"><div style="text-decoration:none; font-size:20px; font-weight: bold;">  <%= image_tag("teacher.png",class:"img img-rounded", height:"200") %>
+          <br>PROFESOR<h1 style="font-weight: bold; color: gray;">1</h1></div><br></center></label>
          <% end %>
 			</div>
 			<div class="col-md-6 hvr-grow">
 				<%= form_tag({:controller => "apps", :action => "index"}, :method => "get") do %>
 				 <%= hidden_field_tag :post, 1%>
-				<center><div  style="text-decoration:none; font-size:20px; font-weight: bold;"> <input type="submit" name="name" value="">   <%= image_tag("students.png",class:"img img-rounded", height:"200") %><br>ESTUDIANTE<h1 style="font-weight: bold; color: gray;">2</h1></div><br></center>
+				 <input type="submit" value="" id="sub2" class="roles" >
+				 <label for="sub2"><center class="rol-center"><div  style="text-decoration:none; font-size:20px; font-weight: bold;">    <%= image_tag("students.png",class:"img img-rounded", height:"200") %><br>ESTUDIANTE<h1 style="font-weight: bold; color: gray;">2</h1></div><br></center></label>
+
 				<% end %>
 			</div>
-		</div>
+		</div></center>
 	</div>
 	<?php include 'templates/base/footer.php' ?>
 
