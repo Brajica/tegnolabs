@@ -1,4 +1,4 @@
-class RegistroController < Devise::SessionsController
+class AdminiController < Devise::SessionsController
   def new
     super
   end
@@ -6,6 +6,11 @@ class RegistroController < Devise::SessionsController
     super
   end
   def create
-   super
+    super
+    if admin_signed_in?
+      return  new_app_path
+       redirect_to new_app_path
+    end
+
   end
 end

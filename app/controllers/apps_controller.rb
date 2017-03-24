@@ -8,8 +8,10 @@ class AppsController < ApplicationController
      @v=params[:post]
      if @v == "0"
          @apps=App.paginate(page: params[:page],per_page:30).profesores.ultimos
-       else
+       elsif
          @apps=App.paginate(page: params[:page],per_page:30).estudiantes.ultimos
+       else
+         @apps=App.all(page: params[:page],per_page:30)
      end
     end
   end

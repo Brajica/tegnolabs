@@ -71,16 +71,18 @@
           <div class="btn-group" role="group">
             <%= button_to "Cerrar Sesion", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
           </div>
-    <% else %>
-    <div class="btn-group" role="group">
-      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal_Login" data-backdrop="static" data-keyboard="false" style="color:white; width: 100px; margin-top: 5px;">Entrar</button>
-    </div>
-    <div class="btn-group" role="group">
-      <%= link_to "Registrarse", new_user_registration_path, class: "btn btn-info",style: "color:white; width: 100px; margin-top: 5px;" %>
-
-    </div>
-<% end %>
-
+         <% elsif admin_signed_in? %>
+          <div class="btn-group" role="group">
+            <%= button_to "Cerrar Sesion ADMINISTRADOR", destroy_admin_session_path, method: :delete, class: "btn btn-danger" %>
+          </div>
+          <% else %>
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal_Login" data-backdrop="static" data-keyboard="false" style="color:white; width: 100px; margin-top: 5px;">Entrar</button>
+            </div>
+            <div class="btn-group" role="group">
+              <%= link_to "Registrarse", new_user_registration_path, class: "btn btn-info",style: "color:white; width: 100px; margin-top: 5px;" %>
+            </div>
+         <% end %>
         </li>
       </ul>
     </div>
@@ -104,11 +106,11 @@
     $('#txtUsuario').focus()
   });
 
-  $('#modal_Login').modal({
+  /*$('#modal_Login').modal({
       backdrop: 'static',
-      keyboard: false
+      keyboard: false,
       show: true
-  }); //Llamada al modal, focus y bloqueo
+  }); //Llamada al modal, focus y bloqueo*/
 </script>
 <script>
   $(function () {
@@ -122,6 +124,7 @@
 	<p style="text-align: right; font-weight: bold;" class="col-md-12">
 		<a href="" style="color: white;">TÉRMINOS DEL SERVICIO</a> |
 		<a href="" style="color: white;">MAPA DEL SITIO</a> |
+    <%=link_to "ADMINISTRADOR", new_admin_session_path, style:"color: white;"%>
 		<a href="about.php" style="color: white;">DEVELOPERS</a>
 	</p>
 </footer>

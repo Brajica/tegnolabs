@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'apps/calificacion'
-  devise_for :admins,controllers: {session: 'admini'}
+  devise_for :admins, controllers: {sessions: 'admini'}
   resources :apps
   devise_for :users, controllers: {registrations: 'registro'}
   root :to => "inicio#index"
