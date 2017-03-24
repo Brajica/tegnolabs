@@ -1,5 +1,5 @@
 class AppsController < ApplicationController
-  before_action :set_app, only: [:show, :edit, :update, :destroy,:calificacion]
+  before_action :set_app, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_admin!, only:[:new,:create,:edit,:update,:destroy]
   # GET /apps
   # GET /apps.json
@@ -19,8 +19,9 @@ class AppsController < ApplicationController
   end
 
   def calificacion
-   @app=@ppp
-   
+    if request.get?
+       @p=params[:value]
+    end
   end
 
   # GET /apps/new

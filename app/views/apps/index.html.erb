@@ -64,7 +64,11 @@
              <td><%= app.titulo %></td>
              <td><%= truncate(app.cuerpo, :length => 20) %></td>
              <td>
-               <%= link_to "ss", app, method: :calificacion,class:"btn btn-primary" %>
+               <%= form_tag({:controller => "apps", :action => "calificacion"}, :method => "get") do %>
+       				 <%= hidden_field_tag :value, app.id%>
+       				 <input type="submit" value="" id="sub2"  >
+       				 <label for="sub2"><button type="button" class="btn btn-primary"></button></label>
+       				<% end %>
              </td>
            </tr>
          <% end %>

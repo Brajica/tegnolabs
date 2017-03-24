@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  post 'apps/calificacion'
+  get 'apps/calificacion'
   devise_for :admins,controllers: {session: 'admini'}
   resources :apps
   devise_for :users, controllers: {registrations: 'registro'}
