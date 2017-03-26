@@ -7,17 +7,21 @@ class AppsController < ApplicationController
     if request.get?
      @v=params[:post]
      if @v == "0"
-         #@apps=App.paginate(page: params[:page],per_page:30).profesores.ultimos
+         @apps=App.paginate(page: params[:page],per_page:30).profesores.ultimos
        elsif @v == "1"
          @apps=App.paginate(page: params[:page],per_page:30).estudiantes.ultimos
      end
     else
-      @apps=App.paginate(page: params[:page],per_page:30)
+    redirect_to :back
     end
   end
   # GET /apps/1
   # GET /apps/1.json
   def show
+    @claridad=Rating.where(:app_id => 2).average(:claridad)
+    @contenido=Rating.where(:app_id => 2).average(:contenido)
+    @motivacion=Rating.where(:app_id => 2).average(:motivacion)
+    @interaccion=Rating.where(:app_id => 2).average(:interaccion)
   end
 
 

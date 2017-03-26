@@ -17,6 +17,7 @@ class RatingsController < ApplicationController
   def new
     @rating = Rating.new
     @p=params[:value]
+
   end
 
   # GET /ratings/1/edit
@@ -27,10 +28,10 @@ class RatingsController < ApplicationController
   # POST /ratings.json
   def create
     @rating = Rating.new(rating_params)
-
+       ruta=params[:vamos]
     respond_to do |format|
       if @rating.save
-        format.html { redirect_to @rating, notice: 'Rating was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Has calificado la aplicacion muchas gracias' }
         format.json { render :show, status: :created, location: @rating }
       else
         format.html { render :new }
@@ -71,6 +72,6 @@ class RatingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rating_params
-      params.require(:rating).permit(:app_id, :user_id, :claridad, :motivacion, :contenido, :interaccino,:unique)
+      params.require(:rating).permit(:app_id, :user_id, :claridad, :motivacion, :contenido, :interaccion,:unique)
     end
 end

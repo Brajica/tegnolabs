@@ -64,10 +64,10 @@
              <td><%= app.titulo %></td>
              <td><%= truncate(app.cuerpo, :length => 20) %></td>
              <td>
-               <%= form_tag({:controller => "ratings", :action => "new"}, :method => "post") do %>
+               <%= form_tag({:controller => "ratings", :action => "new"}, :method => "get") do %>
                <%= hidden_field_tag :value, app.id%>
-               <input type="submit" value="" id="sub" class="roles" >
-               <label for="sub"><a type="button" title="Valorar aplicación" class="btn btn-primary" data-toggle="tooltip" data-placement="top" ><i class="fa fa-check"></i></a></label>
+               <%= submit_tag  app.titulo, id: app.titulo,class:"roles"%>
+               <label for="<%= app.titulo%>"><a type="button" title="Valorar aplicación" class="btn btn-primary" data-toggle="tooltip" data-placement="top" ><i class="fa fa-check"></i></a></label>
               <% end %>
              </td>
 

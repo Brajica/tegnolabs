@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170325232611) do
+ActiveRecord::Schema.define(version: 20170326191417) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -51,13 +51,13 @@ ActiveRecord::Schema.define(version: 20170325232611) do
   create_table "ratings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "app_id"
     t.integer  "user_id"
-    t.decimal  "claridad",    precision: 10
-    t.decimal  "motivacion",  precision: 10
-    t.decimal  "contenido",   precision: 10
-    t.decimal  "interaccino", precision: 10
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.float    "claridad",    limit: 24
+    t.float    "motivacion",  limit: 24
+    t.float    "contenido",   limit: 24
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "unique"
+    t.float    "interaccion", limit: 24
     t.index ["app_id"], name: "index_ratings_on_app_id", using: :btree
     t.index ["user_id"], name: "index_ratings_on_user_id", using: :btree
   end

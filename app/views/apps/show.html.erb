@@ -31,5 +31,12 @@
   <%= image_tag @app.imagen.url(:mini),class: "img-circle"%>
 </p>
 
-<%= link_to 'Edit', edit_app_path(@app) %> |
-<%= link_to 'Back', apps_path %>
+<div class="panel panel-default">
+      <div class="panel-heading"><h4 class="text-muted" style="font-weight: bold;">Criterios evaluativos</h4></div>
+      <div class="panel-body">
+        <h5 class="text-muted" style="color: #303f9f;"><b>Claridad </b><%= text_field_tag @claridad, @claridad,  class:"rating", disabled:true %></h5>
+        <h5 class="text-muted" style="color: #303f9f;"><b>motivacion </b><%= text_field_tag @motivacion, @motivacion, class:"rating", disabled:true %></h5>
+        <h5 class="text-muted" style="color: #303f9f;"><b>contenido </b><%= text_field_tag @contenido,@contenido,  class:"rating", disabled:true %></h5>
+        <h5 class="text-muted" style="color: #303f9f;"><b>interaccion </b><%= text_field_tag @interaccion, @interaccion,  class:"rating",  disabled:true %></h5>
+      </div>
+    </div>
