@@ -60,17 +60,18 @@
        </thead>
        <tbody>
          <% @apps.each do |app| %>
-         <tr>
-           <td><%= app.titulo %></td>
-           <td><%= truncate(app.cuerpo, :length => 20) %></td>
-           <td>
-             <%= form_tag({:controller => "apps", :action => "calificacion"}, :method => "get") do %>
-             <%= hidden_field_tag :value, app.id%>
-             <input type="submit" value="" id="sub" class="roles" >
-             <label for="sub"><a type="button" title="Valorar aplicación" class="btn btn-primary" data-toggle="tooltip" data-placement="top" ><i class="fa fa-check"></i></a></label>
-            <% end %>
-           </td>
-         </tr></a>
+         <tr onclick="document.location='apps/<%= app.id %>'" style="cursor:pointer">
+             <td><%= app.titulo %></td>
+             <td><%= truncate(app.cuerpo, :length => 20) %></td>
+             <td>
+               <%= form_tag({:controller => "ratings", :action => "new"}, :method => "post") do %>
+               <%= hidden_field_tag :value, app.id%>
+               <input type="submit" value="" id="sub" class="roles" >
+               <label for="sub"><a type="button" title="Valorar aplicación" class="btn btn-primary" data-toggle="tooltip" data-placement="top" ><i class="fa fa-check"></i></a></label>
+              <% end %>
+             </td>
+
+         </tr>
          <% end %>
        </tbody>
      </table>

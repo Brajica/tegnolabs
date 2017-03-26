@@ -1,0 +1,79 @@
+<%= form_for(rating) do |f| %>
+  <% if rating.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% rating.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="container">
+		<ol class="breadcrumb">
+			<li><a href="index.php">Inicio</a></li>
+			<li><a href="home.php">Aplicaciones</a></li>
+			<li class="active"><?php echo ucfirst($nombre); ?></li>
+		</ol>
+
+		<div class="col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-heading"><h4 class="text-muted" style="font-weight: bold;">Características</h4></div>
+				<div class="panel-body">
+					<h5 class="text-muted"><b>Plataforma: </b><?php echo ucfirst($plataforma); ?></h5>
+					<h5 class="text-muted"><b>Versión: </b><?php echo $version; ?></h5>
+					<h5 class="text-muted"><b>Idioma: </b><?php echo ucfirst($idioma); ?></h5>
+					<h5 class="text-muted"><b>Autores: </b><?php echo ucfirst($autores); ?></h5>
+					<h5 class="text-muted"><b>Sitio Web Oficial: </b><?php echo "www.".$sitio_web; ?></h5>
+					<h5 class="text-muted"><b>Fecha: </b><?php echo $fecha; ?></h5>
+				</div>
+			</div><hr>
+		</div>
+
+		<div class="col-md-9" style="border-left: 1px dotted #e0e0e0; border-width: thin; margin-bottom: 10px;">
+			<form action="" method="post">
+				<table class="table table-hover">
+				    <thead>
+				    	<tr colspan="3"><h3 style="font-weight: bold; text-align: center;">VALORACIÓN <br><small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis nam deserunt et quidem, magni dignissimos provident ipsa? Veniam fuga, itaque aut blanditiis non, nobis beatae explicabo exercitationem iste, ullam sint.</small></h3></tr>
+						<tr>
+							<th width="10%" style="text-align: center;">ID</th>
+					        <th width="50" style="text-align: center;">CRITERIOS</th>
+					        <th width="40%" style="text-align: center;">VALORACIÓN</th>
+					     </tr>
+				    </thead>
+				    <tbody>
+						<tr>
+							<td style="text-align: center;">01</td>
+							<td>Claridad</td>
+							<td style="text-align: center;">  <%= f.text_field :claridad,  class:"rating", required:true %></td>
+						</tr>
+						<tr>
+							<td style="text-align: center;">02</td>
+							<td>Motivacion</td>
+							<td style="text-align: center;">  <%= f.text_field :motivacion,  class:"rating", required:true %></td>
+						</tr>
+						<tr>
+							<td style="text-align: center;">03</td>
+							<td>Contenido</td>
+							<td style="text-align: center;"><%= f.text_field :contenido,  class:"rating", required:true %></td>
+						</tr>
+						<tr>
+							<td style="text-align: center;">05</td>
+							<td>Interaccion</td>
+							<td style="text-align: center;">  <%= f.text_field :interaccino,  class:"rating", required:true %></td>
+						</tr>
+
+				    </tbody>
+				  </table>
+				  <hr><br>
+          <% if user_signed_in? %>
+             <%= f.hidden_field :user_id, value: current_user.id %>
+             <%= f.hidden_field :app_id, value:@p %>
+             <input type="hidden" name="rating[unique]" value="<%=@p%><%=current_user.id%>">
+          <% end %>
+            <%= f.submit "Calificar", class:"btn btn-lg btn-primary", style:"width: 40%; margin: 0 auto; display: block;" %>
+			  </form>
+		</div>
+	</div>
+
+
+<% end %>

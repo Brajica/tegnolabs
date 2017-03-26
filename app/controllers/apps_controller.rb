@@ -7,12 +7,12 @@ class AppsController < ApplicationController
     if request.get?
      @v=params[:post]
      if @v == "0"
-         @apps=App.paginate(page: params[:page],per_page:30).profesores.ultimos
-       elsif
+         #@apps=App.paginate(page: params[:page],per_page:30).profesores.ultimos
+       elsif @v == "1"
          @apps=App.paginate(page: params[:page],per_page:30).estudiantes.ultimos
-       else
-         @apps=App.all(page: params[:page],per_page:30)
      end
+    else
+      @apps=App.paginate(page: params[:page],per_page:30)
     end
   end
   # GET /apps/1
@@ -20,11 +20,6 @@ class AppsController < ApplicationController
   def show
   end
 
-  def calificacion
-    if request.get?
-       @p=params[:value]
-    end
-  end
 
   # GET /apps/new
   def new

@@ -1,4 +1,5 @@
 class App < ApplicationRecord
+  has_many :ratings
   validates :titulo, presence: true, uniqueness: true
   validates :cuerpo, :presence => {message: "Por favor no dejaar vacio el campo titulos"},length: {minimum: 20,message: " el campo cuerpo debe tener mas de 300 caracteres"}
   validates :idioma, :presence => {message: "Selecione la idioma"}

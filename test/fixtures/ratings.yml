@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  app: one
+  user: one
+  claridad: 9.99
+  motivacion: 9.99
+  contenido: 9.99
+  interaccino: 9.99
+
+two:
+  app: two
+  user: two
+  claridad: 9.99
+  motivacion: 9.99
+  contenido: 9.99
+  interaccino: 9.99
