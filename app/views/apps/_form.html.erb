@@ -13,9 +13,15 @@
 
   <div class="field">
     <%= f.label :titulo %>
-    <%= f.text_field :titulo %>
+    <%=  f.text_field :titulo%>
   </div>
-
+  <div class="field">
+    <%= f.label :area %>
+    <%= f.select :plataforma,[["Selecciona el area",""],["Electronica","Electronica"],["Electricidad","Electricidad"],
+    ["Algebra","Algebra"],["Trigonometria","Trigonometria"],
+    ["Calculo","Calculo"],
+    ["Estadistica","Estadistica"],["Matematicas","Matematicas"]] %>
+  </div>
   <div class="field">
     <%= f.label :cuerpo %>
     <%= f.text_area :cuerpo %>

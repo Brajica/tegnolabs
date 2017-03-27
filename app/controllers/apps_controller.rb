@@ -1,4 +1,5 @@
 class AppsController < ApplicationController
+
   before_action :set_app, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_admin!, only:[:new,:create,:edit,:update,:destroy]
   # GET /apps
@@ -15,13 +16,22 @@ class AppsController < ApplicationController
     redirect_to :back
     end
   end
+
+  #metodo filtros
+  def filtros
+      respond_to :html
+     @apps= App.where(:rol => params[:rol]).or(App.where(:plataforma => params[:plataforma]).or(App.where(:area => params[:area])))
+   respond_with @apps
+       #format.json { render :json => @apps, status: :ok, location: path_to_controller_method_url }
+
+  end
   # GET /apps/1
   # GET /apps/1.json
   def show
-    @claridad=Rating.where(:app_id => 2).average(:claridad)
-    @contenido=Rating.where(:app_id => 2).average(:contenido)
-    @motivacion=Rating.where(:app_id => 2).average(:motivacion)
-    @interaccion=Rating.where(:app_id => 2).average(:interaccion)
+    @claridad=Rating.where(:app_id => params[:id]).average(:claridad)
+    @contenido=Rating.where(:app_id => params[:id]).average(:contenido)
+    @motivacion=Rating.where(:app_id => params[:id]).average(:motivacion)
+    @interaccion=Rating.where(:app_id => params[:id]).average(:interaccion)
   end
 
 
@@ -81,6 +91,9 @@ class AppsController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def app_params
-      params.require(:app).permit(:titulo, :cuerpo, :plataforma, :idioma, :sitio_web, :calificacion, :imagen,:rol)
+      params.require(:app).permit(:titulo, :cuerpo, :plataforma, :idioma, :sitio_web, :imagen,:rol)
+    end
+    def filtros_permitidos
+         params.require(:app).permit( :plataforma, :rol,:area)
     end
 end
