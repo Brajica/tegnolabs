@@ -1,0 +1,14 @@
+  <% @apps.each do |app| %>
+  <tr onclick="document.location='apps/<%= app.id %>'" style="cursor:pointer">
+      <td><%= app.titulo %></td>
+      <td><%= truncate(app.cuerpo, :length => 20) %></td>
+      <td>
+        <%= form_tag({:controller => "ratings", :action => "new"}, :method => "get") do %>
+        <%= hidden_field_tag :value, app.id%>
+        <%= submit_tag  app.titulo, id: app.titulo,class:"roles"%>
+        <label for="<%= app.titulo%>"><a type="button" title="Valorar aplicación" class="btn btn-primary" data-toggle="tooltip" data-placement="top" ><i class="fa fa-check"></i></a></label>
+       <% end %>
+      </td>
+
+  </tr>
+  <% end %>

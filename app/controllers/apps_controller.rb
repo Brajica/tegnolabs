@@ -17,13 +17,14 @@ class AppsController < ApplicationController
     end
   end
 
-  #metodo filtros
+  #metodo filtros (POST)
   def filtros
-      respond_to :html
-     @apps= App.where(:rol => params[:rol]).or(App.where(:plataforma => params[:plataforma]).or(App.where(:area => params[:area])))
-   respond_with @apps
-       #format.json { render :json => @apps, status: :ok, location: path_to_controller_method_url }
-
+     @apps= App.where(rol: params[:rol]).or(App.where(plataforma:
+      params[:plataforma]).or(App.where(area: params[:area])))
+        respond_to do |format|
+          format.json{render :json => @apps}
+          format.js
+        end
   end
   # GET /apps/1
   # GET /apps/1.json

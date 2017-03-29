@@ -1,0 +1,6 @@
+<% if @apps
+  @apps.each do |app| %>
+
+$("tbody").html('<%= j render "tbody" %>')
+ <% end %>
+<%end%>
