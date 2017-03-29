@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   root :to => "inicio#index"
   post 'ratings/new'
   post 'apps/filtros'
-
+  get 'dashboard', :to => "inicio#dashboard"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

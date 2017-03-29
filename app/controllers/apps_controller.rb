@@ -8,14 +8,15 @@ class AppsController < ApplicationController
     if request.get?
      @v=params[:post]
      if @v == "0"
-         @apps=App.paginate(page: params[:page],per_page:30).profesores.ultimos
+         @apps=App.profesores
        elsif @v == "1"
-         @apps=App.paginate(page: params[:page],per_page:30).estudiantes.ultimos
+         @apps=App.estudiantes
+       else
+         @apps=App.all
      end
-    else
-    redirect_to :back
     end
   end
+
 
   #metodo filtros (POST)
   def filtros
