@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170327152859) do
+ActiveRecord::Schema.define(version: 20170405013531) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -34,33 +34,28 @@ ActiveRecord::Schema.define(version: 20170327152859) do
     t.string   "plataforma"
     t.string   "idioma"
     t.string   "sitio_web"
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "imagen_file_name"
     t.string   "imagen_content_type"
     t.integer  "imagen_file_size"
     t.datetime "imagen_updated_at"
     t.text     "cuerpo",              limit: 65535
     t.string   "rol"
-    t.decimal  "claridad",                          precision: 10
-    t.decimal  "contenido",                         precision: 10
-    t.decimal  "motivacion",                        precision: 10
-    t.decimal  "interaccion",                       precision: 10
     t.string   "area"
   end
 
   create_table "ratings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "app_id"
     t.integer  "user_id"
-    t.float    "claridad",    limit: 24
-    t.float    "motivacion",  limit: 24
-    t.float    "contenido",   limit: 24
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.string   "unique"
-    t.float    "interaccion", limit: 24
+    t.float    "valoracion",     limit: 24
+    t.integer  "valoracions_id"
     t.index ["app_id"], name: "index_ratings_on_app_id", using: :btree
     t.index ["user_id"], name: "index_ratings_on_user_id", using: :btree
+    t.index ["valoracions_id"], name: "index_ratings_on_valoracions_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -83,6 +78,13 @@ ActiveRecord::Schema.define(version: 20170327152859) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "valoracions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "nombre"
+  end
+
   add_foreign_key "ratings", "apps"
   add_foreign_key "ratings", "users"
+  add_foreign_key "ratings", "valoracions", column: "valoracions_id"
 end

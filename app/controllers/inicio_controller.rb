@@ -1,4 +1,5 @@
 class InicioController < ApplicationController
+  before_action :authenticate_admin!, only:[:dashboard]
   def index
 
   end

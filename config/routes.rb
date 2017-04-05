@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   post 'ratings/new'
   post 'apps/filtros'
   get 'dashboard', :to => "inicio#dashboard"
+  resources :valoracions
+  get 'nueva-valoracion', :to => "valoracions#new"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

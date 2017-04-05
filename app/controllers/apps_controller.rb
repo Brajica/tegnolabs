@@ -30,10 +30,9 @@ class AppsController < ApplicationController
   # GET /apps/1
   # GET /apps/1.json
   def show
-    @claridad=Rating.where(:app_id => params[:id]).average(:claridad)
-    @contenido=Rating.where(:app_id => params[:id]).average(:contenido)
-    @motivacion=Rating.where(:app_id => params[:id]).average(:motivacion)
-    @interaccion=Rating.where(:app_id => params[:id]).average(:interaccion)
+    @valoraciones=Valoracion.all
+
+  
   end
 
 

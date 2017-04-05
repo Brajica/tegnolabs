@@ -18,17 +18,15 @@
           	<h5 class="text-muted"><b>Nombre: </b><%= @app.titulo%></h5>
 					<h5 class="text-muted"><b>Plataforma: </b><%= @app.plataforma%></h5>
 					<h5 class="text-muted"><b>Idioma: </b><%= @app.idioma%></h5>
-					<h5 class="text-muted"><b>Sitio Web Oficial: </b><%= @app.sitio_web%></h5>
+					<h5 class="text-muted"><b>Sitio Web Oficial: </b><a href="http://<%= @app.sitio_web%>" target="_blank"><%=@app.sitio_web%></a></h5>
 				</div>
 			</div><hr>
-
 			<div class="panel panel-default">
 				<div class="panel-heading"><h4 class="text-muted" style="font-weight: bold;">Criterios evaluativos</h4></div>
 				<div class="panel-body">
-					<h5 class="text-muted" style="color: #303f9f;"><b>Claridad </b><input id="input-21e" value="<%=@claridad%>" data-size="xs"  data-show-clear="false" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" disabled></h5>
-					<h5 class="text-muted" style="color: #303f9f;"><b>Motivacion </b><input id="input-21e" value="<%=@motivacion%>" data-size="xs"  data-show-clear="false" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" disabled></h5>
-					<h5 class="text-muted" style="color: #303f9f;"><b>Contenido </b><input id="input-21e" value="<%=@contenido%>" data-size="xs"  data-show-clear="false" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" disabled></h5>
-					<h5 class="text-muted" style="color: #303f9f;"><b>Interaccion </b><input id="input-21e" value="<%=@interaccion%>" data-size="xs"  data-show-clear="false" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" disabled></h5>
+					<%@valoraciones.each do |valoraciones|%>
+					   <h5 class="text-muted" style="color: #303f9f;"><b><%= valoraciones.nombre.capitalize%> </b><input id="input-21e" value="<%=Rating.where(:app_id => params[:id]).where(:valoracions_id => valoraciones.id).average(:valoracion )%>" data-size="xs"  data-show-clear="false" type="number" class="rating " min=0 max=5 step=0.5 data-size="xs" disabled></h5>
+					<% end %>
 				</div>
 			</div><hr>
 		</div>

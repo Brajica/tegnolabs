@@ -72,6 +72,10 @@
             <%= button_to "Cerrar Sesion", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
           </div>
          <% elsif admin_signed_in? %>
+         <div class="btn-group">
+          <%= link_to "Dashboard", '/dashboard',class:"btn btn-info"%>
+         </div>
+
           <div class="btn-group" role="group">
             <%= button_to "Cerrar Sesion ADMINISTRADOR", destroy_admin_session_path, method: :delete, class: "btn btn-danger" %>
           </div>

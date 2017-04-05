@@ -10,62 +10,68 @@
       </ul>
     </div>
   <% end %>
-
   <div class="container">
   	<ol class="breadcrumb">
-  		<li><a href="index.php">Inicio</a></li>
-  		<li><a href="dashboard.php">Administrar aplicaciones</a></li>
+  		<li><a href="/dashboard">Administrar aplicaciones</a></li>
   		<li class="active">Nueva aplicación</li>
   	</ol>
-
   	<div class="col-md-2"></div>
   	<div class="col-md-8">
   			<form method="POST" class="form-horizontal">
   				<div class="form-group">
-  			        <label class="control-label col-xs-3">Titulo :</label>
   			        <div class="col-xs-9">
                     <%=  f.text_field :titulo,placeholder:"Titulo", required:true, autofocus:"true",class:"form-control"%>
-
   			        </div>
   			    </div>
   				<div class="form-group">
-  			        <label class="control-label col-xs-3">Descripción :</label>
+
   			        <div class="col-xs-9">
-  			        	<textarea name="txtDescripcion" class="form-control" rows="7" style="resize: none;" placeholder="Escribe una breve descripción de la aplicación..." required></textarea>
+                  <%= f.text_area :cuerpo, class:"form-control",rows:"7",style:"resize: none;",placeholder:"Escribe una breve descripción de la aplicación..." %>
   			        </div>
-  			    </div>
+  			  </div>
+               <div class="">
+
+                 <div class="col-xs-9">
+                   <%= f.select :plataforma,[["Selecciona el area",""],["Electronica","Electronica"],["Electricidad","Electricidad"],
+                   ["Algebra","Algebra"],["Trigonometria","Trigonometria"],
+                   ["Calculo","Calculo"],
+                   ["Estadistica","Estadistica"],["Matematicas","Matematicas"]] %>
+                 </div>
+               </div>
   			    <div class="form-group">
-  			        <label class="control-label col-xs-3">Plataforma :</label>
+
   			        <div class="col-xs-9">
   			            <%= f.select :plataforma,[["Selecciona la plataforma",""],["web","web"],["escritorio","escritorio"],["movil","movil"]],class:"form-control" %>
   			        </div>
   			    </div>
-
   			    <div class="form-group">
-  			        <label class="control-label col-xs-3">Idioma :</label>
+
   			        <div class="col-xs-9">
-  			            <%= f.select :idioma,[["Selecciona EL idioma",""],["Ingles","Ingles"],["Español","Español"]] %>
+  			            <%= f.select :idioma,[["Selecciona EL idioma",""],["Ingles","Ingles"],["Español","Español"]]
+                    %>
   			        </div>
   			    </div>
-
   			    <div class="form-group">
-  			        <label class="control-label col-xs-3">Sitio web :</label>
+
   			        <div class="col-xs-9">
   			          <%= f.text_field :sitio_web %>
   			        </div>
   			    </div>
+            <div class="">
+              <div class="field">
+                    <%= f.file_field :imagen %>
+             </div>
+            </div>
   			    <hr>
   			    <div class="form-group">
-  			        <label class="control-label col-xs-3">Clasificación :</label>
+
   			        <div class="col-xs-9">
-  			        	<p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur in beatae voluptatem, expedita, sequi earum sapiente rem perferendis aut sunt repellat veniam provident sed qui. Illo modi in error omnis?</p>
   			            <%= f.select :rol, [["Rol que cumple",""],["estudiante","estudiante"],["profesor","profesor"]] %>
   			        </div>
-  			    </div>
-
+  			  </div>
   				<hr>
-  				<button type="submit" class="btn btn-lg btn-success" name="btnCrear_app" style="width: 50%; margin: 0 auto; display: block;">Registrar <i class="fa fa-angle-double-right"></i></button>
-  			</form>
+  				<button type="submit" class="btn btn-lg btn-success" name="btnCrear_app" style="width: 50%; margin: 0 auto; display: block;">Guardar <i class="fa fa-angle-double-right"></i></button>
+
   	</div>
   	<div class="col-md-2"></div>
   </div><br>
@@ -77,40 +83,4 @@
               });
           });
       </script>
-  <div class="field">
-    <%= f.label :area %>
-    <%= f.select :plataforma,[["Selecciona el area",""],["Electronica","Electronica"],["Electricidad","Electricidad"],
-    ["Algebra","Algebra"],["Trigonometria","Trigonometria"],
-    ["Calculo","Calculo"],
-    ["Estadistica","Estadistica"],["Matematicas","Matematicas"]] %>
-  </div>
-  <div class="field">
-    <%= f.label :cuerpo %>
-    <%= f.text_area :cuerpo %>
-  </div>
-
-  <div class="field">
-    <%= f.label :plataforma %>
-
-  </div>
-
-  <div class="field">
-    <%= f.label :idioma %>
-
-  </div>
-  <div class="field">
-    <%= f.label :rol %>
-
-  </div>
-  <div class="field">
-    <%= f.label :sitio_web %>
-
-  </div>
-
-  <div class="field">
-    <%= f.file_field :imagen %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
